@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import Base from '../Base/Base';
 import { Button, TextField } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
 function MovieForm({ isUpdate }) {
     const [formData, setFormData] = useState({
@@ -10,6 +11,7 @@ function MovieForm({ isUpdate }) {
     });
     const [success, setSuccess] = useState(false);
     const [error, setError] = useState(false);
+    const navigate=useNavigate();
 
     const setTimeOut = () => {
         setTimeout(() => {
@@ -35,6 +37,7 @@ function MovieForm({ isUpdate }) {
                     original_release_date: '',  // Use the correct field name
                 });
                 setTimeOut();
+                navigate("/")
             })
             .catch((err) => {
                 setError(true);
@@ -67,7 +70,9 @@ function MovieForm({ isUpdate }) {
                     value={formData.original_release_date}
                     onChange={handleChange}
                 />
-                <Button type="submit" variant="contained" onClick={handleSubmit}>
+                <Button type="submit" variant="contained" onClick={handleSubmit}
+                
+                >
                     Add
                 </Button>
             </div>

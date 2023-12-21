@@ -2,13 +2,14 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import Base from '../Base/Base';
 import { Button, TextField } from '@mui/material';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 function MovieUpdate() {
     const [formData, setFormData] = useState({});
     const [success, setSuccess] = useState(false);
     const [error, setError] = useState(false);
     const [id, setId] = useState('');
+    const navigate = useNavigate();
 
     const location = useLocation();
     const movieDetails = location.state;
@@ -44,6 +45,7 @@ function MovieUpdate() {
                 setSuccess(true);
                 setId('');
                 setTimeOut();
+                navigate("/");
             })
             .catch((err) => {
                 setError(true);

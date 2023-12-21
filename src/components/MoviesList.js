@@ -2,12 +2,14 @@ import React, { useEffect, useState } from 'react';
 import Base from '../Base/Base';
 import { Button, Paper, TextField } from '@mui/material';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 export default function MoviesList() {
     const [movies, setMovies] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
     const [searchedMovies, setSearchedMovies] = useState([]);
     const [error, setError] = useState(null);
+    const navigate= useNavigate();
 
     useEffect(() => {
         // Fetch all movies initially
@@ -79,7 +81,7 @@ export default function MoviesList() {
                             <h3 className='movie-title'>Title: {movie.original_title}</h3>
                             <img src={movie.original_poster_path} alt={movie.original_poster_path} className='movie-image' />
                             <div className='movie-content'>Release date: {movie.original_release_date}</div>
-                            <Button color="secondary" onClick={() => alert("Update functionality goes here")}>Update</Button>
+                            <Button color="secondary" onClick={() => navigate(`/update?id=${movie._id}`, { state: movie })}>Update</Button>
                             <Button color="error" onClick={() => handleDelete(movie._id)}>Delete</Button>
                         </div>
                     ))}
