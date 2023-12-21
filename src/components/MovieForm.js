@@ -1,69 +1,78 @@
 import axios from 'axios';
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import Base from '../Base/Base';
 import { Button, TextField } from '@mui/material';
 
 function MovieForm({ isUpdate }) {
-    const [formData, setFormData] = useState({})
-    const [success, setSuccess] = useState(false)
+    const [formData, setFormData] = useState({
+        original_title: '',
+        original_release_date: '',
+    });
+    const [success, setSuccess] = useState(false);
     const [error, setError] = useState(false);
-    const [id, setId] = useState("")
 
-    function handleChange(e) {
+    const setTimeOut = () => {
+        setTimeout(() => {
+            setSuccess(false);
+            setError(false);
+        }, 5000);
+    };
+
+    const handleChange = (e) => {
         setFormData({
             ...formData,
             [e.target.name]: e.target.value,
         });
-
     };
-
-    const setTimeOut = () => {
-        setTimeout(() => {
-            setSuccess(false)
-            setError(false)
-
-        }, 5000);
-    }
 
     const handleSubmit = () => {
         axios
             .post(`https://imdb-api-backend.vercel.app/api/movie/`, formData)
-            .then(res => {
-                setSuccess(true)
-                setFormData({})
+            .then((res) => {
+                setSuccess(true);
+                setFormData({
+                    original_title: '',  // Use the correct field name
+                    original_release_date: '',  // Use the correct field name
+                });
                 setTimeOut();
             })
-            .catch(err => {
-                setError(true)
+            .catch((err) => {
+                setError(true);
                 setTimeOut();
-            })
-    }
+            });
+    };
 
     return (
         <Base>
             <div>
                 <TextField
-                    label="Title" variant="outlined"
-                    fullWidth sx={{ m: 1 }}
-                    placeholder='Enter title'
-                    type="title"
-                    value={formData.title}
+                    label="Title"
+                    variant="outlined"
+                    fullWidth
+                    sx={{ m: 1 }}
+                    placeholder="Enter title"
+                    type="text"  // Use the correct type
+                    name="original_title"  // Use the correct field name
+                    value={formData.original_title}
                     onChange={handleChange}
                 />
-                <TextField label="Year" variant="outlined" fullWidth sx={{ m: 1 }}
-                    placeholder='Enter Year'
-                    type="year"
-                    value={formData.year}
+                <TextField
+                    label="Year"
+                    variant="outlined"
+                    fullWidth
+                    sx={{ m: 1 }}
+                    placeholder="Enter Year"
+                    type="text"  // Use the correct type
+                    name="original_release_date"  // Use the correct field name
+                    value={formData.original_release_date}
                     onChange={handleChange}
                 />
-                <Button
-                    type="submit"
-                    variant="contained"
-                    onClick={handleSubmit}
-                >Add</Button>
+                <Button type="submit" variant="contained" onClick={handleSubmit}>
+                    Add
+                </Button>
             </div>
         </Base>
-    )
+    );
 }
 
-export default MovieForm
+export default MovieForm;

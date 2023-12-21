@@ -22,14 +22,7 @@ function Base({ title, description, children }) {
                                 Dashboard
                             </IconButton>
 
-                            <IconButton
-                                edge="end"
-                                color="inherit"
-                                aria-label="add students"
-                                onClick={() => navigate("/search")}
-                                sx={{ mr: 2 }}>
-                                Search Movie
-                            </IconButton>
+                            
 
                             <IconButton
                                 edge="end"
