@@ -43,7 +43,7 @@ function MovieUpdate({ isUpdate }) {
         <Base>
             <div>
                 <TextField
-                    label="id" variant="outlined"
+                    label="Id" variant="outlined"
                     fullWidth sx={{ m: 1 }}
                     placeholder='Enter id'
                     type="id"
@@ -51,14 +51,14 @@ function MovieUpdate({ isUpdate }) {
                     onChange={handleChange}
                 />
                 <TextField
-                    label="title" variant="outlined"
+                    label="Title" variant="outlined"
                     fullWidth sx={{ m: 1 }}
                     placeholder='Enter title'
                     type="title"
                     value={formData.original_title}
                     onChange={handleChange}
                 />
-                <TextField label="year" variant="outlined" fullWidth sx={{ m: 1 }}
+                <TextField label="Year" variant="outlined" fullWidth sx={{ m: 1 }}
                     placeholder='Enter Year'
                     type="year"
                     value={formData.original_release_date}
