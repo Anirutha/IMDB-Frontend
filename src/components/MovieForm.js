@@ -47,13 +47,13 @@ function MovieForm({ isUpdate }) {
                     fullWidth sx={{ m: 1 }}
                     placeholder='Enter title'
                     type="title"
-                    value={formData.original_title}
+                    value={formData.title}
                     onChange={handleChange}
                 />
                 <TextField label="Year" variant="outlined" fullWidth sx={{ m: 1 }}
                     placeholder='Enter Year'
                     type="year"
-                    value={formData.original_release_date}
+                    value={formData.year}
                     onChange={handleChange}
                 />
                 <Button
